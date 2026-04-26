@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.7
+
+      - name: Install neohscript
+        run: haxelib git neohscript https://github.com/JonkIsKindaCool/neohscript
+
+      - name: Build
+        run: haxe build.hxml

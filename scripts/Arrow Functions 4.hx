@@ -1,0 +1,1 @@
+var oso = val -> val == 0;
