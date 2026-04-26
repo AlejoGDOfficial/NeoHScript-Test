@@ -38,3 +38,17 @@ class Main
         #end
     }
 }
+
+class Masha
+{
+    public function new() {}
+
+    public var yaComio:Bool = false;
+
+    public function darDeComer()
+    {
+        trace('o oso tu manguera esta muy peluda');
+
+        yaComio = true;
+    }
+}
