@@ -31,13 +31,13 @@ class HScript extends NeoHscript
     override function execute(code:String, ?file:String):Dynamic
     {
         if (debug)
-            Sys.println('> ' + file + ':\n\n' + code);
+            Sys.println('> ' + file + ':\n\n' + code + '\n');
 
         try
         {
             super.execute(code, file);
         } catch (e:Exception) {
-            Sys.println('\n' + e.details().split('\n')[0]);
+            Sys.println(e.details().split('\n')[0]);
         }
 
         return null;
