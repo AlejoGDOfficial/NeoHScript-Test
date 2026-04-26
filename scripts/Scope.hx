@@ -9,4 +9,10 @@ function osoFunc()
 
 osoFunc();
 
+{
+    var oso:Int = 12;
+
+    trace(oso);
+}
+
 trace(oso);
