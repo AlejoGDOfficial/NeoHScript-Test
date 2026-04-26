@@ -12,7 +12,7 @@ class Main
 
         final files:Array<String> = FileSystem.readDirectory('scripts').filter(file -> file.endsWith(ScriptsConfig.EXTENSION));
 
-        files.sort((a, b) -> Std.int(FileSystem.stat('scripts/' + a).mtime.getTime() - FileSystem.stat('scripts/' + b).mtime.getTime()));
+        files.sort(#if FILES_TIME_SORT (a, b) -> Std.int(FileSystem.stat('scripts/' + a).mtime.getTime() - FileSystem.stat('scripts/' + b).mtime.getTime()) #else Reflect.compare #end);
 
         var successfull:Array<String> = [];
         var failed:Array<String> = [];
