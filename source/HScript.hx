@@ -9,6 +9,8 @@ import sys.io.File;
 
 class HScript extends NeoHscript
 {
+    public var successfull:Null<Bool>;
+
     public var debug:Bool = false;
 
     public function new(name:String, ?debug:Bool = false)
@@ -25,19 +27,29 @@ class HScript extends NeoHscript
         if (FileSystem.exists(path))
             execute(File.getContent(path), name + ScriptsConfig.EXTENSION);
         else
-            execute(name, 'script.hx');
+            execute(name);
     }
+
+    public var name:String;
 
     override function execute(code:String, ?file:String):Dynamic
     {
+        file ??= ScriptsConfig.DEFAULT_NAME;
+
+        name = file;
+
         if (debug)
             Sys.println('> ' + file + ':\n\n' + code + '\n');
 
         try
         {
             super.execute(code, file);
+
+            successfull = true;
         } catch (e:Exception) {
             Sys.println(e.details().split('\n')[0]);
+
+            successfull = false;
         }
 
         return null;

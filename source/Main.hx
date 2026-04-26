@@ -14,12 +14,27 @@ class Main
 
         files.sort((a, b) -> Std.int(FileSystem.stat('scripts/' + a).mtime.getTime() - FileSystem.stat('scripts/' + b).mtime.getTime()));
 
+        var successfull:Array<String> = [];
+        var failed:Array<String> = [];
+
         for (index => file in files)
         {
-            new HScript(file.substr(0, file.length - ScriptsConfig.EXTENSION.length), true);
+            final script:HScript = new HScript(file.substr(0, file.length - ScriptsConfig.EXTENSION.length), true);
 
-            if (index < files.length - 1)
+            if (script.successfull)
+                successfull.push(script.name);
+            else
+                failed.push(script.name);
+
+            #if HIDE_RESULTS if (index < files.length - 1) #end
                 Sys.println('\n-----\n');
         }
+
+        #if !HIDE_RESULTS
+        Sys.println([
+            'Successfull (' + successfull.length + ' / ' + files.length + ')' + ': \n' + [for (f in successfull) ' - ' + f].join('\n'),
+            'Failed (' + failed.length + ' / ' + files.length + '): \n' + [for (f in failed) ' - ' + f].join('\n')
+        ].join('\n\n'));
+        #end
     }
 }
