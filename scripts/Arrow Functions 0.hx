@@ -1,1 +1,1 @@
-var oso:Float -> Bool;
+var oso:(Float, Int) -> Bool;

@@ -1,0 +1,1 @@
+var oso:Float -> Bool;
