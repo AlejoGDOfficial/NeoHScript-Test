@@ -1,0 +1,6 @@
+-cp source
+-lib neohscript
+-D message.reporting=pretty
+-D dce=no
+-main Main
+--interp
