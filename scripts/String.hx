@@ -1,3 +1,5 @@
-var osoLength:Int = 'oso'.length;
+var oso:String = 'oso\n\toso\'\\';
 
-trace(osoLength);
+oso += "\"masha\"";
+
+trace(oso + ' | ' + oso.length);
