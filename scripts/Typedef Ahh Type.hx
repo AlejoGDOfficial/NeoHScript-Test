@@ -1,0 +1,1 @@
+var oso:{masha:String, hambre:Bool};
